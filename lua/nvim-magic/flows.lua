@@ -24,7 +24,7 @@ function flows.append_completion(backend, max_tokens, stops)
 		assert(type(max_tokens) == 'number', 'max tokens must be a number')
 		assert(1 <= max_tokens, 'max tokens must be at least 1')
 	else
-		max_tokens = 300
+		max_tokens = 3000
 	end
 	if stops then
 		assert(type(stops) == 'table', 'stop must be an array of strings')
@@ -42,7 +42,7 @@ function flows.append_completion(backend, max_tokens, stops)
 	end
 
 	log.fmt_debug('Fetching completion max_tokens=%s stops=%s', max_tokens, vim.inspect(stops))
-	ui.notify(nprefix .. 'fetching completion...')
+	ui.notify(nprefix .. 'fetching completion... max_tokens=' .. max_tokens)
 	backend:complete(visual_lines, max_tokens, stops, function(completion)
 		local compl_lines = vim.split(completion, '\n', true)
 
@@ -87,7 +87,7 @@ function flows.suggest_alteration(backend, language)
 		-- we default max tokens to a "large" value in case the prompt is large, this isn't robust
 		-- ideally we would estimate the number of tokens in the prompt and then set a max tokens
 		-- value proportional to that (e.g. 2x) and taking into account the max token limit as well
-		local max_tokens = 1000
+		local max_tokens = 3000
 		local stops = { tmpl.stop_code }
 
 		log.fmt_debug('Fetching alteration max_tokens=%s stops=%s', max_tokens, vim.inspect(stops))
@@ -162,7 +162,7 @@ function flows.suggest_docstring(backend, language)
 	-- we default max tokens to a "large" value in case the prompt is large, this isn't robust
 	-- ideally we would estimate the number of tokens in the prompt and then set a max tokens
 	-- value proportional to that (e.g. 2x) and taking into account the max token limit as well
-	local max_tokens = 1000
+	local max_tokens = 3000
 	local stops = { tmpl.stop_code }
 
 	log.fmt_debug('Fetching docstring max_tokens=%s stops=%s', max_tokens, tostring(stops))

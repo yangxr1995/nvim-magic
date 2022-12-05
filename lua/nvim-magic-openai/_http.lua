@@ -58,7 +58,7 @@ function ClientMethods:post(api_endpoint, json_body, api_key, success, fail)
 					return
 				end
 
-				if res.status ~= 200 then
+				if res.status ~= 200 and res.status ~= 100 then
 					timer:close()
 					fail('non-200 HTTP status response=' .. res_json)
 					return
