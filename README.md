@@ -60,7 +60,7 @@ See the demo gif below.
 	src='docs/gifs/docstring.gif'
 	/>
 
-### Asking for an alteration (`<Leader>mas`)
+### Asking for an alteration (`<Leader>mss`)
 
 <img 
 	alt='Example of Python function being altered'
