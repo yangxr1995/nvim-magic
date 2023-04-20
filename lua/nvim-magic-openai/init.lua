@@ -5,7 +5,8 @@ local cache = require('nvim-magic-openai._cache')
 local log = require('nvim-magic-openai._log')
 local http = require('nvim-magic-openai._http')
 
-local DEFAULT_API_ENDPOINT = 'https://api.openai.com/v1/engines/text-davinci-003/completions'
+local DEFAULT_API_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
+local DEFAULT_MODEL = 'gpt-3.5-turbo'
 local API_KEY_ENVVAR = 'OPENAI_API_KEY'
 
 local function env_get_api_key()
@@ -20,6 +21,7 @@ local function default_config()
 		cache = {
 			dir_name = 'http',
 		},
+		model = DEFAULT_MODEL
 	}
 end
 
@@ -63,7 +65,7 @@ function openai.new(override)
 		http_cache = cache.new_dummy()
 	end
 
-	return backend.new(config.api_endpoint, http.new(http_cache), env_get_api_key)
+	return backend.new(config.api_endpoint, config.model, http.new(http_cache), env_get_api_key)
 end
 
 return openai

@@ -16,12 +16,12 @@ function ClientMethods:post(api_endpoint, json_body, api_key, success, fail)
 		raw_body = json_body,
 		headers = {
 			content_type = 'application/json',
+			api_key = api_key
 		},
 		return_job = true,
 	}
 
 	local id = random.generate_timestamped_string()
-
 	local req_filename = id .. '-request.json'
 	local req_json = vim.fn.json_encode(req)
 	assert(req.auth == nil, 'auth details should be added only after caching!')

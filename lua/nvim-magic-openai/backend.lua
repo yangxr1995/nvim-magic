@@ -17,7 +17,7 @@ function BackendMethods:complete(lines, max_tokens, stops, success, fail)
 		tostring(stops)
 	)
 
-	local req_body = completion.new_request(prompt, max_tokens, stops)
+	local req_body = completion.new_request(prompt, self.model, max_tokens, stops)
 	local req_body_json = vim.fn.json_encode(req_body)
 
 	self.http:post(self.api_endpoint, req_body_json, self.get_api_key(), function(body)
@@ -28,11 +28,12 @@ end
 
 local BackendMt = { __index = BackendMethods }
 
-function backend.new(api_endpoint, http, api_key_fn)
+function backend.new(api_endpoint, model, http, api_key_fn)
 	return setmetatable({
 		api_endpoint = api_endpoint,
 		get_api_key = api_key_fn,
 		http = http,
+		model = model
 	}, BackendMt)
 end
 
