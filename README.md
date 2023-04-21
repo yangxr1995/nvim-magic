@@ -70,3 +70,4 @@ You can map your own key sequences to the predefined `<Plug>`s if you don't want
 | `<Plug>nvim-magic-append-completion`  | `<Leader>mcs`  | visual | Fetch and append completion                |
 | `<Plug>nvim-magic-suggest-alteration` | `<Leader>mss`  | visual | Ask for an alteration to the selected text |
 | `<Plug>nvim-magic-suggest-docstring`  | `<Leader>mds`  | visual | Generate a docstring                       |
+| `<Plug>nvim-magic-suggest-chat`       | `<Leader>mcc`  | visual | Chat, ask questions                        |

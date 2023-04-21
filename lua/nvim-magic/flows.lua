@@ -208,4 +208,33 @@ function flows.suggest_docstring(backend, language)
 	end)
 end
 
+function flows.suggest_chat(backend, language)
+	assert(backend ~= nil, 'backend must be provided')
+	max_tokens = 3000
+	local orig_bufnr, orig_winnr = buffer.get_handles()
+	local filename = buffer.get_filename()
+	local nprefix = notify_prefix(filename)
+
+	local visual_lines, start_row, start_col, end_row, _ = buffer.get_visual_lines()
+	ui.prompt_input('What is your question? ...', keymaps.get_quick_quit(), function(task)
+    buffer.append_end(orig_bufnr, ">> " .. task)
+    log.fmt_debug('Fetching completion max_tokens=%s', max_tokens)
+    backend:chat(task, max_tokens, function(completion)
+      buffer.append_end(orig_bufnr, completion)
+      --vim.api.nvim_set_current_win(orig_winnr)
+      --vim.api.nvim_set_current_buf(orig_bufnr)
+      --vim.api.nvim_win_set_cursor(0, { end_row, end_col }) -- TODO: use specific window
+
+      ui.notify(nprefix .. 'fetched completion (' .. tostring(#completion) .. ' characters)', 'info')
+    end, function(errmsg)
+      ui.notify(nprefix .. errmsg)
+    end)
+
+	end)
+end
+
+
+
+
+
 return flows

@@ -29,6 +29,21 @@ function buffer.append(bufnr, row, lines)
 	log.fmt_debug('Appended lines count=%s row=%s col=%s)', #lines, row, col)
 end
 
+local function split_lines(input_string)
+    local lines = {}
+    for line in string.gmatch(input_string, "([^\n]+)") do
+        table.insert(lines, line)
+    end
+    return lines
+end
+
+function buffer.append_end(bufnr, lines)
+  local current_line_count = vim.api.nvim_buf_line_count(bufnr)
+  local lines_append = split_lines(lines)
+  vim.api.nvim_buf_set_lines(bufnr, current_line_count, current_line_count, false, lines_append)
+	log.fmt_debug('Appended lines count=%s)', #lines)
+end
+
 function buffer.paste_over(bufnr, start_row, start_col, end_row, lines)
 	local end_col = buffer.get_end_col(bufnr, end_row)
 	vim.api.nvim_buf_set_text(bufnr, start_row - 1, start_col - 1, end_row - 1, end_col, lines)
@@ -78,6 +93,8 @@ function buffer.get_visual_start_end()
 			end_col
 		)
 	end
+
+
 
 	return start_row, start_col, end_row, end_col
 end
