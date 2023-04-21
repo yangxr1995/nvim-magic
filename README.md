@@ -1,3 +1,20 @@
+# FORK
+
+This is a fork from the original repo.
+It seemed to have stopped development.
+So I maintain this now.
+
+## Environment variables
+
+This uses the OPEN_API_KEY from the enviroment. It is supposed to be set to your OpenAI key.
+
+## Default model
+
+The default model used is gpt-3.5-turbo.
+Change that in this file, if you want:
+
+[lua/nvim-magic-openai/init.lua](https://github.com/Ricardicus/nvim-magic/blob/master/lua/nvim-magic-openai/init.lua)
+
 # nvim-magic
 
 ![ci](https://github.com/jameshiew/nvim-magic/actions/workflows/ci.yml/badge.svg)
