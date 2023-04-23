@@ -215,12 +215,18 @@ function flows.suggest_chat(backend, language)
 	local filename = buffer.get_filename()
 	local nprefix = notify_prefix(filename)
 
+  -- check if chat history is zero, set backend chat buffer to orig_bufnr
+  if backend:get_chat_length() == 0 then
+    backend:set_chat_buffer(orig_bufnr)
+  end
+
 	local visual_lines, start_row, start_col, end_row, _ = buffer.get_visual_lines()
+  print(visual_lines)
 	ui.prompt_input('What is your question? ...', keymaps.get_quick_quit(), function(task)
     buffer.append_end(orig_bufnr, ">> " .. task)
     log.fmt_debug('Fetching completion max_tokens=%s', max_tokens)
     backend:chat(task, max_tokens, function(completion)
-      buffer.append_end(orig_bufnr, completion)
+      buffer.append_end(backend:get_chat_buffer(), completion)
       --vim.api.nvim_set_current_win(orig_winnr)
       --vim.api.nvim_set_current_buf(orig_bufnr)
       --vim.api.nvim_win_set_cursor(0, { end_row, end_col }) -- TODO: use specific window

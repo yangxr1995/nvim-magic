@@ -53,6 +53,19 @@ function BackendMethods:chat(prompt, max_tokens, success, fail)
 	end, fail)
 end
 
+function BackendMethods:get_chat_length()
+  return #self.chat_history
+end
+
+function BackendMethods:set_chat_buffer(bufno)
+  self.chat_buffer = bufno
+end
+
+function BackendMethods:get_chat_buffer(bufno)
+  return self.chat_buffer
+end
+
+
 
 local BackendMt = { __index = BackendMethods }
 
@@ -62,7 +75,8 @@ function backend.new(api_endpoint, model, http, api_key_fn)
 		get_api_key = api_key_fn,
 		http = http,
 		model = model,
-    chat_history = {}
+    chat_history = {},
+    chat_buffer = 0
 	}, BackendMt)
 end
 
