@@ -4,6 +4,13 @@ This is a fork from the original repo.
 It seemed to have stopped development.
 So I maintain this now.
 
+# A python script
+
+number = input("Enter a number: ")
+result = int(number) * 10
+print("The result is:", result)
+
+
 ## Environment variables
 
 This uses the OPEN_API_KEY from the enviroment. It is supposed to be set to your OpenAI key.
@@ -22,6 +29,17 @@ Change that in this file, if you want:
 A pluggable framework for integrating AI code assistance into Neovim. The goals are to make using AI code assistance unobtrusive, and to make it easy to create and share new flows that use AI code assistance. Go to [quickstart](#quickstart) for how to install. It currently works with [OpenAI Codex](https://openai.com/blog/openai-codex/).
 
 ## Features
+
+- Completion
+- Docstring
+- Alteration
+- Chat
+
+When using chat, the window you focus on when you start the chat will be
+selected for the rest of the session. Until nvim is closed or until you
+manually reset the chat (<Leader>mcc). If text is selected in the visual,
+this information is passed along the question but hidden from the convo-window.
+See the demo gif below.
 
 ### Completion (`<Leader>mcs`)
 
@@ -43,6 +61,14 @@ A pluggable framework for integrating AI code assistance into Neovim. The goals 
 	alt='Example of Python function being altered'
 	src='docs/gifs/suggest.gif'
 	/>
+
+### Chat (`<Leader>mcc`)
+
+<img 
+	alt='Example of some chatting'
+	src='docs/gifs/chat.gif'
+	/>
+
 
 ## Quickstart
 
@@ -82,9 +108,11 @@ These flows have keymaps set by default for visual mode selections (though you c
 
 You can map your own key sequences to the predefined `<Plug>`s if you don't want to use the default keymaps.
 
-| `<Plug>`                              | default keymap | mode   | action                                     |
-| ------------------------------------- | -------------- | ------ | ------------------------------------------ |
-| `<Plug>nvim-magic-append-completion`  | `<Leader>mcs`  | visual | Fetch and append completion                |
-| `<Plug>nvim-magic-suggest-alteration` | `<Leader>mss`  | visual | Ask for an alteration to the selected text |
-| `<Plug>nvim-magic-suggest-docstring`  | `<Leader>mds`  | visual | Generate a docstring                       |
-| `<Plug>nvim-magic-suggest-chat`       | `<Leader>mcc`  | visual | Chat, ask questions                        |
+| `<Plug>`                               | default keymap | mode   | action                                       |
+| -------------------------------------- | -------------- | ------ | -------------------------------------------- |
+| `<Plug>nvim-magic-append-completion`   | `<Leader>mcs`  | visual | Fetch and append completion                  |
+| `<Plug>nvim-magic-suggest-alteration`  | `<Leader>mss`  | visual | Ask for an alteration to the selected text   |
+| `<Plug>nvim-magic-suggest-docstring`   | `<Leader>mds`  | visual | Generate a docstring                         |
+| `<Plug>nvim-magic-suggest-chat`        | `<Leader>mcc`  | visual | Chat, ask questions. Keep the window.        |
+| `<Plug>nvim-magic-suggest-chat-reset`  | `<Leader>mcr`  | visual | Chat, reset history. You can start all over. |
+
