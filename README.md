@@ -4,7 +4,7 @@ This is a fork from the original repo.
 It seemed to have stopped development.
 So it is maintained here now.
 
-Things I have added:
+Things this fork has added:
 
 - Chat
 - Support for chat based models (gpt-3.5-turbo, gpt-4)
