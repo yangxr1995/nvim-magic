@@ -4,6 +4,11 @@ This is a fork from the original repo.
 It seemed to have stopped development.
 So I maintain this now.
 
+Thing I have added:
+
+- Chat
+- Support for chat based models (gpt-3.5-turbo, gpt-4)
+
 ## Environment variables
 
 This uses the OPEN_API_KEY from the enviroment. It is supposed to be set to your OpenAI key.
