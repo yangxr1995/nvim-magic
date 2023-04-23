@@ -65,7 +65,9 @@ function BackendMethods:get_chat_buffer(bufno)
   return self.chat_buffer
 end
 
-
+function BackendMethods:chat_reset()
+  self.chat_history = {}
+end
 
 local BackendMt = { __index = BackendMethods }
 

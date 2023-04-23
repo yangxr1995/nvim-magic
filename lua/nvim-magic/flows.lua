@@ -223,7 +223,7 @@ function flows.suggest_chat(backend, language)
 	local visual_lines, start_row, start_col, end_row, _ = buffer.get_visual_lines()
   print(visual_lines)
 	ui.prompt_input('What is your question? ...', keymaps.get_quick_quit(), function(task)
-    buffer.append_end(orig_bufnr, ">> " .. task)
+    buffer.append_end(backend:get_chat_buffer(), ">> " .. task)
     log.fmt_debug('Fetching completion max_tokens=%s', max_tokens)
     backend:chat(task, max_tokens, function(completion)
       buffer.append_end(backend:get_chat_buffer(), completion)
@@ -237,6 +237,11 @@ function flows.suggest_chat(backend, language)
     end)
 
 	end)
+end
+
+function flows.suggest_chat_reset(backend, language)
+  backend:chat_reset()
+  print("Chat has been reset")
 end
 
 
