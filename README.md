@@ -2,7 +2,7 @@
 
 This is a fork from the original repo.
 It seemed to have stopped development.
-So I maintain this now.
+So it is maintained here now.
 
 Things I have added:
 
