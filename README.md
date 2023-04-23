@@ -41,6 +41,13 @@ manually reset the chat (<Leader>mcc). If text is selected in the visual,
 this information is passed along the question but hidden from the convo-window.
 See the demo gif below.
 
+### Chat (`<Leader>mcc`)
+
+<img 
+	alt='Example of some chatting'
+	src='docs/gifs/chat.gif'
+	/>
+
 ### Completion (`<Leader>mcs`)
 
 <img 
@@ -61,14 +68,6 @@ See the demo gif below.
 	alt='Example of Python function being altered'
 	src='docs/gifs/suggest.gif'
 	/>
-
-### Chat (`<Leader>mcc`)
-
-<img 
-	alt='Example of some chatting'
-	src='docs/gifs/chat.gif'
-	/>
-
 
 ## Quickstart
 
