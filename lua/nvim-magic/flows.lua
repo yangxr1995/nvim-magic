@@ -208,6 +208,19 @@ function flows.suggest_docstring(backend, language)
 	end)
 end
 
+-- a Lua function that outputs all key value pairs in a table, even if the table contains tables
+function printTable(t)
+  if t == nil then return end -- added line to check if t is nil
+  for k, v in pairs(t) do
+    if type(v) == "table" then
+      print(k .. ":")
+      printTable(v)
+    else
+      print(k .. ": " .. tostring(v))
+    end
+  end
+end
+
 function flows.suggest_chat(backend, language)
 	assert(backend ~= nil, 'backend must be provided')
 	max_tokens = 3000
@@ -221,11 +234,21 @@ function flows.suggest_chat(backend, language)
   end
 
 	local visual_lines, start_row, start_col, end_row, _ = buffer.get_visual_lines()
-  print(visual_lines)
+  printTable(visual_lines)
+
+
 	ui.prompt_input('What is your question? ...', keymaps.get_quick_quit(), function(task)
+    local prompt
+
+    if visual_lines == nil then
+      prompt = task
+    else
+      prompt = "Here is some context.\n" .. table.concat(visual_lines, "\n") .. "\nnow, " .. task
+    end
+
     buffer.append_end(backend:get_chat_buffer(), ">> " .. task)
     log.fmt_debug('Fetching completion max_tokens=%s', max_tokens)
-    backend:chat(task, max_tokens, function(completion)
+    backend:chat(prompt, max_tokens, function(completion)
       buffer.append_end(backend:get_chat_buffer(), completion)
       --vim.api.nvim_set_current_win(orig_winnr)
       --vim.api.nvim_set_current_buf(orig_bufnr)
