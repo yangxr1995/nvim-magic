@@ -4,13 +4,6 @@ This is a fork from the original repo.
 It seemed to have stopped development.
 So I maintain this now.
 
-# A python script
-
-number = input("Enter a number: ")
-result = int(number) * 10
-print("The result is:", result)
-
-
 ## Environment variables
 
 This uses the OPEN_API_KEY from the enviroment. It is supposed to be set to your OpenAI key.
