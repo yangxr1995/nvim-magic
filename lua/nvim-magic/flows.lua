@@ -221,7 +221,7 @@ function printTable(t)
   end
 end
 
-function flows.suggest_chat(backend, language)
+function flows.suggest_chat(backend)
 	assert(backend ~= nil, 'backend must be provided')
 	max_tokens = 3000
 	local orig_bufnr, orig_winnr = buffer.get_handles()
@@ -262,7 +262,7 @@ function flows.suggest_chat(backend, language)
 	end)
 end
 
-function flows.suggest_chat_reset(backend, language)
+function flows.suggest_chat_reset(backend)
   backend:chat_reset()
   print("Chat has been reset")
 end
