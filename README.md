@@ -80,7 +80,7 @@ See the demo gif below.
 ```lua
 -- using packer.nvim
 use({
-	'jameshiew/nvim-magic',
+	'ricardicus/nvim-magic',
 	config = function()
 		require('nvim-magic').setup()
 	end,
