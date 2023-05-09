@@ -60,7 +60,7 @@ See the demo gif below.
 	src='docs/gifs/docstring.gif'
 	/>
 
-### Asking for an alteration (`<Leader>mas`)
+### Asking for an alteration (`<Leader>mss`)
 
 <img 
 	alt='Example of Python function being altered'
@@ -113,3 +113,6 @@ You can map your own key sequences to the predefined `<Plug>`s if you don't want
 | `<Plug>nvim-magic-suggest-chat`        | `<Leader>mcc`  | visual | Chat, ask questions. Keep the window.        |
 | `<Plug>nvim-magic-suggest-chat-reset`  | `<Leader>mcr`  | visual | Chat, reset history. You can start all over. |
 
+## Development
+
+There is a [development container](https://containers.dev/) specified under the [`.devcontainer`](.devcontainer/) directory, that builds and installs the latest stable version of Neovim, and sets it up to use the local `nvim-magic` repo as a plugin.
