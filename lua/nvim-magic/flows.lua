@@ -234,8 +234,6 @@ function flows.suggest_chat(backend)
   end
 
 	local visual_lines, start_row, start_col, end_row, _ = buffer.get_visual_lines()
-  printTable(visual_lines)
-
 
 	ui.prompt_input('What is your question? ...', keymaps.get_quick_quit(), function(task)
     local prompt
