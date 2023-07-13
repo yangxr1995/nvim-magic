@@ -25,6 +25,10 @@ keymaps.plugs = {
 		default_keymap = '<Leader>mcr',
 		lua = "require('nvim-magic.flows').suggest_chat_reset(require('nvim-magic').backends.default)",
 	},
+	['<Plug>nvim-magic-doc-qa-chat'] = {
+		default_keymap = '<Leader>mcq',
+		lua = "require('nvim-magic.flows').content_chat_qa(require('nvim-magic').backends.default)",
+	},
 }
 
 for plug, v in pairs(keymaps.plugs) do

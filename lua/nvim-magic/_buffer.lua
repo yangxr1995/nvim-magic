@@ -44,6 +44,13 @@ function buffer.append_end(bufnr, lines)
 	log.fmt_debug('Appended lines count=%s)', #lines)
 end
 
+function buffer.reset_last(bufnr, line)
+  local line_append = split_lines(line)
+  vim.api.nvim_buf_set_lines(bufnr, -2, -1, false, line_append)
+end
+
+
+
 function buffer.paste_over(bufnr, start_row, start_col, end_row, lines)
 	local end_col = buffer.get_end_col(bufnr, end_row)
 	vim.api.nvim_buf_set_text(bufnr, start_row - 1, start_col - 1, end_row - 1, end_col, lines)

@@ -8,6 +8,7 @@ Things this fork has added:
 
 - Chat
 - Support for chat based models (gpt-3.5-turbo, gpt-4)
+- Document Q/A (using indexer for handling out-of-context sized content)
 
 ## Environment variables
 
@@ -32,6 +33,7 @@ A pluggable framework for integrating AI code assistance into Neovim. The goals 
 - Docstring
 - Alteration
 - Chat
+- Document Q/A
 
 When using chat, the window you focus on when you start the chat will be
 selected for the rest of the session. Until nvim is closed or until you
@@ -44,6 +46,16 @@ See the demo gif below.
 <img 
 	alt='Example of some chatting'
 	src='docs/gifs/chat.gif'
+	/>
+
+### Document Q/A (`<Leader>mcq`)
+
+You need to set up a window for chat before hand.
+The cursor needs to be in the document that you want to query about.
+
+<img 
+	alt='Example of some document Q/A'
+	src='docs/gifs/chat_doc_qa.gif'
 	/>
 
 ### Completion (`<Leader>mcs`)
@@ -112,6 +124,7 @@ You can map your own key sequences to the predefined `<Plug>`s if you don't want
 | `<Plug>nvim-magic-suggest-docstring`   | `<Leader>mds`  | visual | Generate a docstring                         |
 | `<Plug>nvim-magic-suggest-chat`        | `<Leader>mcc`  | visual | Chat, ask questions. Keep the window.        |
 | `<Plug>nvim-magic-suggest-chat-reset`  | `<Leader>mcr`  | visual | Chat, reset history. You can start all over. |
+| `<Plug>nvim-magic-doc-qa-chat`         | `<Leader>mcq`  | visual | Ask questions about a document. Needs chat started and cursor in the document. |
 
 ## Development
 

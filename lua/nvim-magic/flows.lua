@@ -266,7 +266,80 @@ function flows.suggest_chat_reset(backend)
 end
 
 
+function flows.content_chat_qa(backend)
+	assert(backend ~= nil, 'backend must be provided')
+	max_tokens = 3000
+   local chunk_size = 1024
 
+	local orig_bufnr, orig_winnr = buffer.get_handles()
+	local filename = buffer.get_filename()
+	local nprefix = notify_prefix(filename)
 
+  -- check if chat history is zero, set backend chat buffer to orig_bufnr
+  if backend:get_chat_length() == 0 then
+    backend:set_chat_buffer(orig_bufnr)
+  end
+
+	local visual_lines, start_row, start_col, end_row, _ = buffer.get_visual_lines()
+
+	ui.prompt_input('What do you want to know about this document? ...', keymaps.get_quick_quit(), function(task)
+    local prompt = task
+
+    buffer.append_end(backend:get_chat_buffer(), ">> " .. task)
+    log.fmt_debug('Fetching completion max_tokens=%s', max_tokens)
+
+   local buf = vim.api.nvim_get_current_buf()
+   local filename = vim.api.nvim_buf_get_name(buf)
+   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+   local content = table.concat(lines, "\n")
+
+   -- Create a table to hold the chunks
+   local chunks = {}
+
+   -- Initialize the starting index of the chunk
+   local start = 1
+
+   while start <= #content do
+       -- Calculate the tentative end of the chunk
+       local _end = start + chunk_size
+
+       -- If the end is within the string
+       if _end <= #content then
+           -- Find the nearest space or newline before or at the end
+           local space = content:sub(start, _end):match('.*()%s')
+           local newline = content:sub(start, _end):match('.*()\n')
+
+           -- Use the later one as the end
+           if space and newline then
+               _end = start + math.max(space, newline) - 1
+           elseif space then
+               _end = start + space - 1
+           elseif newline then
+               _end = start + newline - 1
+           end
+       end
+
+       -- Add the chunk to the table
+       table.insert(chunks, content:sub(start, _end))
+
+       -- Move to the next chunk
+       start = _end + 1
+   end
+
+    backend:chat_content_QA(prompt, filename, chunks, 1, max_tokens, function(completion)
+      buffer.reset_last(backend:get_chat_buffer(), completion)
+      backend:indexer_reset()
+
+      --vim.api.nvim_set_current_win(orig_winnr)
+      --vim.api.nvim_set_current_buf(orig_bufnr)
+      --vim.api.nvim_win_set_cursor(0, { end_row, end_col }) -- TODO: use specific window
+
+      ui.notify(nprefix .. 'fetched completion (' .. tostring(#completion) .. ' characters)', 'info')
+    end, function(errmsg)
+      ui.notify(nprefix .. errmsg)
+    end)
+
+	end)
+end
 
 return flows
