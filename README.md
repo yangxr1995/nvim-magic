@@ -21,10 +21,6 @@ Change that in this file, if you want:
 
 [lua/nvim-magic-openai/init.lua](https://github.com/Ricardicus/nvim-magic/blob/master/lua/nvim-magic-openai/init.lua)
 
-# nvim-magic
-
-A pluggable framework for integrating AI code assistance into Neovim. The goals are to make using AI code assistance unobtrusive, and to make it easy to create and share new flows that use AI code assistance. Go to [quickstart](#quickstart) for how to install. It currently works with [OpenAI Codex](https://openai.com/blog/openai-codex/).
-
 ## Features
 
 - Completion
