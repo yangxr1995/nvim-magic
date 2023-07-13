@@ -50,7 +50,7 @@ See the demo gif below.
 
 ### Document Q/A (`<Leader>mcq`)
 
-You need to set up a window for chat before hand.
+Aks questions about documents, don't worry about their size. You need to set up a window for chat before hand.
 The cursor needs to be in the document that you want to query about.
 
 <img 
