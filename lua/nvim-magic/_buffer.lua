@@ -49,7 +49,12 @@ function buffer.reset_last(bufnr, line)
   vim.api.nvim_buf_set_lines(bufnr, -2, -1, false, line_append)
 end
 
-
+function buffer.read_last_line(bufnr)
+  local current_line_count = vim.api.nvim_buf_line_count(bufnr)
+  if current_line_count == 0 then return nil end -- if buffer is empty
+  local lines = vim.api.nvim_buf_get_lines(bufnr, current_line_count-1, current_line_count, false)
+  return lines[1] -- get the first (and only) line from the table
+end
 
 function buffer.paste_over(bufnr, start_row, start_col, end_row, lines)
 	local end_col = buffer.get_end_col(bufnr, end_row)

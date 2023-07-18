@@ -9,6 +9,7 @@ Things this fork has added:
 - Chat
 - Support for chat based models (gpt-3.5-turbo, gpt-4)
 - Document Q/A (using indexer for handling out-of-context sized content)
+- Codebase generation
 
 ## Environment variables
 
@@ -28,6 +29,7 @@ Change that in this file, if you want:
 - Alteration
 - Chat
 - Document Q/A
+- Codebase generations
 
 When using chat, the window you focus on when you start the chat will be
 selected for the rest of the session. Until nvim is closed or until you
@@ -40,6 +42,16 @@ See the demo gif below.
 <img 
 	alt='Example of some chatting'
 	src='docs/gifs/chat.gif'
+	/>
+
+### Generate codebase (`<Leader>mcb`)
+
+You want to look at the code, check out that it is alright.
+But it gives you a rough start to something.
+
+<img 
+	alt='Example of some generated codebase'
+	src='docs/gifs/codebase.gif'
 	/>
 
 ### Document Q/A (`<Leader>mcq`)
@@ -119,6 +131,7 @@ You can map your own key sequences to the predefined `<Plug>`s if you don't want
 | `<Plug>nvim-magic-suggest-chat`        | `<Leader>mcc`  | visual | Chat, ask questions. Keep the window.        |
 | `<Plug>nvim-magic-suggest-chat-reset`  | `<Leader>mcr`  | visual | Chat, reset history. You can start all over. |
 | `<Plug>nvim-magic-doc-qa-chat`         | `<Leader>mcq`  | visual | Ask questions about a document. Needs chat started and cursor in the document. |
+| `<Plug>nvim-magic-gen-codebase`        | `<Leader>mcb`  | visual | Generate a codebase. Depending on input, quality may vary |
 
 ## Development
 

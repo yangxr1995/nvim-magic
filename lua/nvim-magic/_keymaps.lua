@@ -29,6 +29,10 @@ keymaps.plugs = {
 		default_keymap = '<Leader>mcq',
 		lua = "require('nvim-magic.flows').content_chat_qa(require('nvim-magic').backends.default)",
 	},
+	['<Plug>nvim-magic-gen-codebase'] = {
+		default_keymap = '<Leader>mcb',
+		lua = "require('nvim-magic.flows').gen_codebase(require('nvim-magic').backends.default)",
+	},
 }
 
 for plug, v in pairs(keymaps.plugs) do
