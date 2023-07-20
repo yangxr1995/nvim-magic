@@ -213,8 +213,6 @@ local function write_string_to_file(file_name, string)
    local file = io.open(file_name, "w") -- Open a file in write mode
    if file then                         -- if file successfully opened
       -- Check if the string has three occurrences of the character "`"
-      string = string:gsub("^.-\n", "")
-      string = string:gsub("\n```$", "")
       file:write(string)
       file:close()
    else
@@ -237,12 +235,16 @@ function BackendMethods:gen_codebase_file(prompt, clarify, listing, index, max_t
    local req_body = completion.new_codebase_gen_file_request(prompt, clarify, files, file, self.model, max_tokens,
       stops)
    local req_body_json = vim.fn.json_encode(req_body)
+   local count = index
+   local percentage = ((count-1) / #files) * 100
+   local formatted_percentage = string.format("%.2f%%", percentage)
 
+   buffer.reset_last(self:get_chat_buffer(), "Processing - building (" .. formatted_percentage .. ") " .. file.name)
    self.http:post(self.api_endpoint, req_body_json, self.get_api_key(), function(body)
       local compl = completion.extract_from(body)
       local count = index
       write_string_to_file(file.name, compl)
-      local percentage = (count / #files) * 100
+      local percentage = ((count) / #files) * 100
       local formatted_percentage = string.format("%.2f%%", percentage)
 
       buffer.reset_last(self:get_chat_buffer(), "Processing - building (" .. formatted_percentage .. ") writing to file: " .. file.name)
@@ -266,7 +268,7 @@ function BackendMethods:gen_codebase_file(prompt, clarify, listing, index, max_t
          if index >= #files then
             success()
          else
-            -- os.execute("sleep 50")
+            os.execute("sleep 50")
             self:gen_codebase_file(prompt, clarify, listing, index + 1, max_tokens, success, fail)
          end
       end, fail)

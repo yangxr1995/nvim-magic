@@ -383,9 +383,9 @@ function flows.gen_codebase(backend)
          local QnA = {}
          answer_question(backend, completion.questions, 1, QnA, function()
             buffer.append_end(backend:get_chat_buffer(), "Processing - generating a list of files ...")
-            -- os.execute("sleep 50")
+            os.execute("sleep 50")
             backend:gen_codebase_file_listing(prompt, QnA, max_tokens, function(completion)
-               -- os.execute("sleep 50")
+               os.execute("sleep 50")
                local listing = completion
                local count = 0
                for _ in pairs(listing.files) do count = count + 1 end
