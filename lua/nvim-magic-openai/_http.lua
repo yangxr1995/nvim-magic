@@ -16,7 +16,7 @@ function ClientMethods:post(api_endpoint, json_body, api_key, success, fail)
 		raw_body = json_body,
 		headers = {
 			content_type = 'application/json',
-			api_key = api_key
+			Authorization = 'Bearer '.. api_key
 		},
 		return_job = true,
 	}

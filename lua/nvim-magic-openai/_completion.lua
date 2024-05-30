@@ -15,13 +15,14 @@ function completion.new_request(prompt, model, max_tokens, stops)
          { role = "user",   content = prompt }
       },
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+      stream = false,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -47,13 +48,13 @@ function completion.new_chat_request(history, prompt, model, max_tokens, stops)
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -86,13 +87,13 @@ function completion.new_doc_qa_answer(index, filename, prompt, model, max_tokens
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -116,13 +117,13 @@ function completion.new_codebase_gen_clarify_request(prompt, model, max_tokens, 
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -156,13 +157,13 @@ function completion.new_codebase_gen_file_listing(prompt, clarify, model, max_to
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -197,13 +198,13 @@ function completion.new_indexer_request(index, doc_page, prompt, model, max_toke
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -226,13 +227,13 @@ function completion.new_codebase_gen_minify_file_request(file_name, file_content
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      temperature = 0,
+--      max_tokens = max_tokens,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 
@@ -272,13 +273,13 @@ function completion.new_codebase_gen_file_request(prompt, clarify, files, file, 
    return {
       messages = messages,
       model = model,
-      temperature = 0,
-      max_tokens = max_tokens,
-      n = 1,
-      top_p = 1,
-      stop = stops,
-      frequency_penalty = 0,
-      presence_penalty = 0,
+--      max_tokens = max_tokens,
+--      temperature = 0,
+--      n = 1,
+--      top_p = 1,
+--      stop = stops,
+--      frequency_penalty = 0,
+--      presence_penalty = 0,
    }
 end
 

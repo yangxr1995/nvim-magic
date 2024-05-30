@@ -6,7 +6,7 @@ end
 
 keymaps.plugs = {
 	['<Plug>nvim-magic-append-completion'] = {
-		default_keymap = '<Leader>mcs',
+		default_keymap = '<Leader>llm',
 		lua = "require('nvim-magic.flows').append_completion(require('nvim-magic').backends.default)",
 	},
 	['<Plug>nvim-magic-suggest-alteration'] = {

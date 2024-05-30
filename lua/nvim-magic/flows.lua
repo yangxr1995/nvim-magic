@@ -224,6 +224,7 @@ function printTable(t)
 end
 
 function flows.suggest_chat(backend)
+  print("suggest_chat")
    assert(backend ~= nil, 'backend must be provided')
    max_tokens = 3000
    local orig_bufnr, orig_winnr = buffer.get_handles()
